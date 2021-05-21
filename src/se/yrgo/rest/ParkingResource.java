@@ -12,6 +12,7 @@ import se.yrgo.domain.Customer;
 import se.yrgo.domain.Employee;
 import se.yrgo.domain.ParkingTicket;
 import se.yrgo.service.EmployeeManagementServiceLocal;
+import se.yrgo.service.ParkingService;
 
 
 @Stateless
@@ -19,7 +20,7 @@ import se.yrgo.service.EmployeeManagementServiceLocal;
 public class ParkingResource {
 	
 	@Inject
-	private EmployeeManagementServiceLocal service;
+	private ParkingService service;
 
 	@GET
 	@Produces("application/JSON") // @Produces("application/XML")
