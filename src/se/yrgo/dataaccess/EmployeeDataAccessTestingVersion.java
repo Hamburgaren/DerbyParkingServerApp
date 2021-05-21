@@ -54,16 +54,5 @@ public class EmployeeDataAccessTestingVersion implements EmployeeDataAccess {
 		return null;
 	}
 
-	@Override
-	public List<ParkingTicket> getAllParkingTickets() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ParkingTicket> getCarsbyId(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

@@ -24,6 +24,7 @@ public class ParkingResource {
 	private ParkingService service;
 	*/
 
+
 	@GET
 	@Produces("application/JSON") // @Produces("application/XML")
 	@Path("{ticketId}")
