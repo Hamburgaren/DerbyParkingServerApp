@@ -79,5 +79,12 @@ public class EmployeeDataAccessProductionVersion implements EmployeeDataAccess {
 		return tickets;
 	}
 	
+	@Override
+	public List<ParkingTicket> getCarsbyId(int id) {
+		Query q = em.createQuery("select car from Car car where car.id = :carId");
+		q.setParameter("carId", id);
+		return q.getResultList();
+	}
+	
 	
 }

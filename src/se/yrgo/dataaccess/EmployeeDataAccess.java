@@ -16,4 +16,5 @@ public interface EmployeeDataAccess {
 	public Employee findById(int id) throws EmployeeNotFoundException;
 	public List<Employee> getAllEmployeesWhereIdBetween(int firstId, int secondId);
 	public List<ParkingTicket> getAllParkingTickets();
+	List<ParkingTicket> getCarsbyId(int id);
 }
