@@ -3,29 +3,32 @@ package se.yrgo.service;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+import se.yrgo.dataaccess.ParkingDataAccess;
 import se.yrgo.domain.ParkingTicket;
 
 @Stateless
 public class ParkingServiceImplementation implements ParkingService {
 	
 	@Inject
-	private ParkingService dao;
+	private ParkingDataAccess dao;
 
 	@Override
 	public void createTicket(ParkingTicket ticket) {
-		dao.createTicket(ticket);
+		
+		
 	}
 
 	@Override
 	public void deleteTicket(int ticketId) {
-		dao.deleteTicket(ticketId);
-
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void findTicketById(int ticketId) {
-		dao.findTicketById(ticketId);
-
+		// TODO Auto-generated method stub
+		
 	}
+
 
 }
