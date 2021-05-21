@@ -72,19 +72,19 @@ public class EmployeeDataAccessProductionVersion implements EmployeeDataAccess {
 		return employees;
 	}
 	
-	@Override
-	public List<ParkingTicket> getAllParkingTickets() {
-		Query q = em.createQuery("select ticket from Ticket ticket");
-		List<ParkingTicket> tickets = q.getResultList();
-		return tickets;
-	}
-	
-	@Override
-	public List<ParkingTicket> getCarsbyId(int id) {
-		Query q = em.createQuery("select car from Car car where car.id = :carId");
-		q.setParameter("carId", id);
-		return q.getResultList();
-	}
+//	@Override
+//	public List<ParkingTicket> getAllParkingTickets() {
+//		Query q = em.createQuery("select ticket from Ticket ticket");
+//		List<ParkingTicket> tickets = q.getResultList();
+//		return tickets;
+//	}
+//	
+//	@Override
+//	public List<ParkingTicket> getCarsbyId(int id) {
+//		Query q = em.createQuery("select car from Car car where car.id = :carId");
+//		q.setParameter("carId", id);
+//		return q.getResultList();
+//	}
 	
 	
 }
