@@ -19,11 +19,8 @@ import se.yrgo.service.ParkingService;
 @Path("/parkingtickets/")
 public class ParkingResource {
 	
-	/*
 	@Inject
 	private ParkingService service;
-	*/
-
 
 	@GET
 	@Produces("application/JSON") // @Produces("application/XML")
@@ -32,7 +29,7 @@ public class ParkingResource {
 	 *  You can access this REST interface from: http://localhost:8080/EmployeeManagement/webservice/parkingtickets/5
 	 */
 	public Response findTicketById(@PathParam("ticketId") int id) {
-
+		service.findTicketById(id);
 		/* This is just some meaningless test code to check that we are able to make requests. */
 		if (id == 5) {
 			Car car1 = new Car("ZER 992", "grey Lada");
@@ -52,7 +49,7 @@ public class ParkingResource {
 	 *  You can access this REST interface from: http://localhost:8080/EmployeeManagement/webservice/parkingtickets/5
 	 */
 	public Response deleteTicketById(@PathParam("ticketId") int id) {
-
+		service.deleteTicket(id);
 		/* This is just some meaningless test code to check that we are able to make requests. */
 		if (id == 5) {
 			return Response.ok(null).build();
@@ -68,6 +65,7 @@ public class ParkingResource {
 	@Produces("application/JSON")
 	@Consumes("application/JSON")
 	public Response createTicket(ParkingTicket ticket) {
+		service.createTicket(ticket);
 		return Response.ok(ticket).build();
 	}
 
