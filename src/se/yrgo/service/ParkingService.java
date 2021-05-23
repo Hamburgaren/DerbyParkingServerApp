@@ -10,5 +10,5 @@ public interface ParkingService {
 
 	public void createTicket(ParkingTicket ticket);
 	public void deleteTicket(int ticketId);
-	public void findTicketById(int ticketId);
+	public ParkingTicket findTicketById(int ticketId);
 }

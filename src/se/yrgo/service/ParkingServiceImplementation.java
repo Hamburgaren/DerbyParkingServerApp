@@ -19,13 +19,12 @@ public class ParkingServiceImplementation implements ParkingService {
 
 	@Override
 	public void deleteTicket(int ticketId) {
-		// TODO Auto-generated method stub
 		dao.deleteTicket(ticketId);
 	}
 
 	@Override
-	public void findTicketById(int ticketId) {
-		// TODO Auto-generated method stub
+	public ParkingTicket findTicketById(int ticketId) {
+		return dao.findTicketById(ticketId);
 		
 	}
 
