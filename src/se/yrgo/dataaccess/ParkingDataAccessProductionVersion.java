@@ -36,9 +36,14 @@ public class ParkingDataAccessProductionVersion implements ParkingDataAccess {
 	}
 
 	@Override
-	public void createTicket(ParkingTicket ticket) {
-		em.persist(ticket);
-		
+	public void createTicket(ParkingTicket ticket) throws ParkingTicketAlreadyExistsException, StorageException {
+		try {
+			em.persist(ticket);
+		} catch (EntityExistsException ex) {
+			throw new ParkingTicketAlreadyExistsException(ex);
+		} catch (Exception ex) {
+			throw new StorageException("Error: Unable to store new ticket in database", ex);
+		}
 	}
 
 	@Override

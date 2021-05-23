@@ -28,6 +28,26 @@ public class Employee implements Serializable {
 		this.salary = salary;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+
+	public void setJobRole(String jobRole) {
+		this.jobRole = jobRole;
+	}
+
+	public void setSalary(int salary) {
+		this.salary = salary;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee: " + this.firstName + " " + this.surname;

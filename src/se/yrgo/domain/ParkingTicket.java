@@ -69,6 +69,34 @@ public class ParkingTicket implements Serializable {
 		return validThroughBegin;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setValidThroughBegin(String validThroughBegin) {
+		this.validThroughBegin = validThroughBegin;
+	}
+
+	public void setValidThroughEnd(String validThroughEnd) {
+		this.validThroughEnd = validThroughEnd;
+	}
+
+	public void setPricePerhour(int pricePerhour) {
+		this.pricePerhour = pricePerhour;
+	}
+
+	public void setStreetAddress(String streetAddress) {
+		this.streetAddress = streetAddress;
+	}
+
+	public void setCar(Car car) {
+		this.car = car;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
 	public String getValidThroughEnd() {
 		return validThroughEnd;
 	}
