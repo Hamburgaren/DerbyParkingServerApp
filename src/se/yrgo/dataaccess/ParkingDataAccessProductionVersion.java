@@ -30,4 +30,23 @@ public class ParkingDataAccessProductionVersion implements ParkingDataAccess {
 		q.setParameter("carId", id);
 		return q.getResultList();
 	}
+
+	@Override
+	public void createTicket(ParkingTicket ticket) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteTicket(int ticketId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public ParkingTicket findTicketById(int ticketId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
