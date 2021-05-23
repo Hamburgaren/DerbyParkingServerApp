@@ -19,7 +19,7 @@ public class ParkingServiceImplementation implements ParkingService {
 
 	@Override
 	public void deleteTicket(int ticketId) {
-		dao.createTicket(null);
+		dao.deleteTicket(ticketId);
 	}
 
 	@Override
