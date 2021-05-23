@@ -5,6 +5,8 @@ import javax.inject.Inject;
 
 import se.yrgo.dataaccess.ParkingDataAccess;
 import se.yrgo.domain.ParkingTicket;
+import se.yrgo.domain.ParkingTicketAlreadyExistsException;
+import se.yrgo.domain.StorageException;
 
 @Stateless
 public class ParkingServiceImplementation implements ParkingService {
@@ -13,7 +15,7 @@ public class ParkingServiceImplementation implements ParkingService {
 	private ParkingDataAccess dao;
 
 	@Override
-	public void createTicket(ParkingTicket ticket) {
+	public void createTicket(ParkingTicket ticket) throws ParkingTicketAlreadyExistsException, StorageException {
 		dao.createTicket(ticket);
 	}
 

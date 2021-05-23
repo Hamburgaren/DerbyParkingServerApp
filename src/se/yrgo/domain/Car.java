@@ -43,5 +43,17 @@ public class Car implements Serializable {
 	public String getDescription() {
 		return description;
 	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setRegNumber(String regNumber) {
+		this.regNumber = regNumber;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	
 }

@@ -60,12 +60,20 @@ public class ParkingResource {
 	
 	/**
 	 *  You can access this REST interface from: http://localhost:8080/EmployeeManagement/webservice/parkingtickets/
+	 *  
+	 *  N.B. There must be a JSON formatted ParkingTicket string posted also. 
 	 */
 	@POST
 	@Produces("application/JSON")
 	@Consumes("application/JSON")
 	public Response createTicket(ParkingTicket ticket) {
-		service.createTicket(ticket);
+		
+		// TODO: check that this works and error handling works.
+		try {
+			service.createTicket(ticket);
+		} catch (Exception ex) {
+			return Response.serverError().build();
+		}
 		return Response.ok(ticket).build();
 	}
 
