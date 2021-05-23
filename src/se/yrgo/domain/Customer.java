@@ -54,5 +54,10 @@ public class Customer implements Serializable {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + "]";
+	}
 	
 }

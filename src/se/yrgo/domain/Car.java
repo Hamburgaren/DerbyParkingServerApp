@@ -55,5 +55,11 @@ public class Car implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	@Override
+	public String toString() {
+		return "Car [id=" + id + ", regNumber=" + regNumber + ", description=" + description + "]";
+	}
+
 	
 }

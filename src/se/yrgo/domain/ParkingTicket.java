@@ -2,7 +2,6 @@ package se.yrgo.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -18,8 +17,9 @@ public class ParkingTicket implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
 
-	private String validThroughBegin;
-	private String validThroughEnd;
+	private Date validThroughBegin;
+	private Date validThroughEnd;
+
 	private int pricePerhour;
 	private String streetAddress;
 
@@ -43,14 +43,17 @@ public class ParkingTicket implements Serializable {
 	 * @param car               Car that this parking ticket has been issued for.
 	 * @param customer
 	 */
-	public ParkingTicket(int hours, int pricePerhour,
+	public ParkingTicket(Date validThroughBegin, Date validThroughEnd, int hours, int pricePerhour,
 			String streetAddress, Car car, Customer customer) {
 		super();
-		
+		/*
 		LocalDateTime timeNow = LocalDateTime.now();
 		LocalDateTime endTime = timeNow.plusHours(hours);
 		this.validThroughBegin = timeNow.toString();
 		this.validThroughEnd = endTime.toString();
+		*/
+		this.validThroughBegin = validThroughBegin;
+		this.validThroughEnd = validThroughEnd;
 		this.pricePerhour = pricePerhour;
 		this.streetAddress = streetAddress;
 		this.car = car;
@@ -64,20 +67,15 @@ public class ParkingTicket implements Serializable {
 		return id;
 	}
 	
-
-	public String getValidThroughBegin() {
-		return validThroughBegin;
-	}
-
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public void setValidThroughBegin(String validThroughBegin) {
+	public void setValidThroughBegin(Date validThroughBegin) {
 		this.validThroughBegin = validThroughBegin;
 	}
 
-	public void setValidThroughEnd(String validThroughEnd) {
+	public void setValidThroughEnd(Date validThroughEnd) {
 		this.validThroughEnd = validThroughEnd;
 	}
 
@@ -97,7 +95,11 @@ public class ParkingTicket implements Serializable {
 		this.customer = customer;
 	}
 
-	public String getValidThroughEnd() {
+	public Date getValidThroughBegin() {
+		return validThroughBegin;
+	}
+
+	public Date getValidThroughEnd() {
 		return validThroughEnd;
 	}
 	
@@ -115,5 +117,10 @@ public class ParkingTicket implements Serializable {
 
 	public Customer getCustomer() {
 		return customer;
+	}
+
+	@Override
+	public String toString() {
+		return "ParkingTicket{" + "id=" + id + ", validThroughBegin=" + validThroughBegin + ", validThroughEnd=" + validThroughEnd + ", pricePerhour=" + pricePerhour + ", streetAddress='" + streetAddress + '\'' + ", car=" + car + ", customer=" + customer + '}';
 	}
 }

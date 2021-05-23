@@ -11,7 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import se.yrgo.domain.ParkingTicketAlreadyExistsException;
-import se.yrgo.domain.StorageException;
+import se.yrgo.domain.StorageAccessException;
 import se.yrgo.domain.ParkingTicket;
 
 @Stateless
@@ -36,27 +36,36 @@ public class ParkingDataAccessProductionVersion implements ParkingDataAccess {
 	}
 
 	@Override
-	public void createTicket(ParkingTicket ticket) throws ParkingTicketAlreadyExistsException, StorageException {
+	public void createTicket(ParkingTicket ticket) throws ParkingTicketAlreadyExistsException, StorageAccessException {
 		try {
+			System.out.println("Creating ticket: " + ticket);
 			em.persist(ticket);
 		} catch (EntityExistsException ex) {
 			throw new ParkingTicketAlreadyExistsException(ex);
 		} catch (Exception ex) {
-			throw new StorageException("Error: Unable to store new ticket in database", ex);
+			throw new StorageAccessException("Error: Unable to store new ticket in database", ex);
 		}
 	}
 
 	@Override
-	public void deleteTicket(int ticketId) {
-		em.remove(ticketId);
+	public void deleteTicket(int ticketId) throws StorageAccessException {
+		
+		em.remove(findTicketById(ticketId));
 		
 	}
 
 	@Override
-	public ParkingTicket findTicketById(int ticketId) {
-		Query q = em.createQuery("select parkingticket from Parkingticket parkingticket where parkingticket.id = :parkingticketId");
-		q.setParameter("parkingticketId", ticketId);
-		return (ParkingTicket)q.getResultList();
+	public ParkingTicket findTicketById(int ticketId) throws StorageAccessException {
+		ParkingTicket resultTicket;
+		try {
+			Query q = em.createQuery("select parkingticket from Parkingticket parkingticket where parkingticket.id = :parkingticketId");
+			q.setParameter("parkingticketId", ticketId);
+			resultTicket = (ParkingTicket)q.getResultList();
+		} catch (Exception ex) {
+			throw new StorageAccessException("Error: Unable to make query to database to find ticketById.", ex);
+		}
+		
+		return resultTicket;
 	}
 	
 }

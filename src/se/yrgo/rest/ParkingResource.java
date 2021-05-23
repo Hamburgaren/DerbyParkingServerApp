@@ -1,6 +1,9 @@
 package se.yrgo.rest;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -11,7 +14,6 @@ import se.yrgo.domain.Car;
 import se.yrgo.domain.Customer;
 import se.yrgo.domain.Employee;
 import se.yrgo.domain.ParkingTicket;
-import se.yrgo.service.EmployeeManagementServiceLocal;
 import se.yrgo.service.ParkingService;
 
 
@@ -23,22 +25,43 @@ public class ParkingResource {
 	private ParkingService service;
 
 	@GET
-	@Produces("application/JSON") // @Produces("application/XML")
+	@Produces("application/JSON") //@Produces("application/JSON") //
 	@Path("{ticketId}")
 	/**
 	 *  You can access this REST interface from: http://localhost:8080/EmployeeManagement/webservice/parkingtickets/5
 	 */
 	public Response findTicketById(@PathParam("ticketId") int id) {
-		service.findTicketById(id);
+		/*
+		ParkingTicket resultTicket;
+		
+		try {	
+			resultTicket = service.findTicketById(id);
+		} catch (Exception ex) {
+			return Response.serverError().entity(ex.getLocalizedMessage()).build();
+		}
+		
+		if (resultTicket != null) {
+			return Response.ok(resultTicket).build();
+		}
+		
+		return Response.status(404).build();
+		*/
+		
+		
 		/* This is just some meaningless test code to check that we are able to make requests. */
+		
 		if (id == 5) {
 			Car car1 = new Car("ZER 992", "grey Lada");
 			Customer customer1 = new Customer("George", "Costanza");
-			
-			ParkingTicket ticket = new ParkingTicket(2, 15, "ï¿½gatan 5", car1, customer1);
+
+			Date timeNow = new Date();
+			int millisecondsInMinute = 1000*60;
+			int parkingLengthInMinutes = 120;
+			ParkingTicket ticket = new ParkingTicket(timeNow, new Date(timeNow.getTime() + parkingLengthInMinutes * millisecondsInMinute), 2,15, "Långgatan 5", car1, customer1);
+			//ParkingTicket ticket = new ParkingTicket(timeNow, timeNow, 2,	15, "Långgatan 5", car1, customer1);
 			return Response.ok(ticket).build();
 		}
-		
+
 		return Response.status(404).build();
 	}
 
@@ -49,7 +72,7 @@ public class ParkingResource {
 	 *  You can access this REST interface from: http://localhost:8080/EmployeeManagement/webservice/parkingtickets/5
 	 */
 	public Response deleteTicketById(@PathParam("ticketId") int id) {
-		service.deleteTicket(id);
+		//service.deleteTicket(id);
 		/* This is just some meaningless test code to check that we are able to make requests. */
 		if (id == 5) {
 			return Response.ok(null).build();
@@ -72,7 +95,8 @@ public class ParkingResource {
 		try {
 			service.createTicket(ticket);
 		} catch (Exception ex) {
-			return Response.serverError().build();
+			//ex.printStackTrace();
+			return Response.serverError().entity(ex.getLocalizedMessage()).build();
 		}
 		return Response.ok(ticket).build();
 	}
