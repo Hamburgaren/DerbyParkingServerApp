@@ -36,6 +36,7 @@ public class ParkingDataAccessProductionVersion implements ParkingDataAccess {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public void createTicket(ParkingTicket ticket) throws ParkingTicketAlreadyExistsException, StorageException {
 		
 		System.out.printf("Now creating new ParkingTicket %s in database.", ticket);
@@ -52,19 +53,24 @@ public class ParkingDataAccessProductionVersion implements ParkingDataAccess {
 		throw new StorageException("Error: Unable to store new ticket in database");
 		//tx.commit();
 		//em.close();
+=======
+	public void createTicket(ParkingTicket ticket) {
+		em.persist(ticket);
+>>>>>>> 45c0515301153c6a1127391dbcd78139458c576e
 		
 	}
 
 	@Override
 	public void deleteTicket(int ticketId) {
-		// TODO Auto-generated method stub
+		em.remove(ticketId);
 		
 	}
 
 	@Override
 	public ParkingTicket findTicketById(int ticketId) {
-		// TODO Auto-generated method stub
-		return null;
+		Query q = em.createQuery("select parkingticket from Parkingticket parkingticket where parkingticket.id = :parkingticketId");
+		q.setParameter("parkingticketId", ticketId);
+		return (ParkingTicket)q.getResultList();
 	}
 	
 }

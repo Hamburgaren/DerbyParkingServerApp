@@ -27,7 +27,6 @@ public class ParkingServiceImplementation implements ParkingService {
 	@Override
 	public ParkingTicket findTicketById(int ticketId) {
 		return dao.findTicketById(ticketId);
-		
 	}
 
 
