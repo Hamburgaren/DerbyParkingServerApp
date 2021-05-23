@@ -33,20 +33,21 @@ public class ParkingDataAccessProductionVersion implements ParkingDataAccess {
 
 	@Override
 	public void createTicket(ParkingTicket ticket) {
-		// TODO Auto-generated method stub
+		em.persist(ticket);
 		
 	}
 
 	@Override
 	public void deleteTicket(int ticketId) {
-		// TODO Auto-generated method stub
+		em.remove(ticketId);
 		
 	}
 
 	@Override
 	public ParkingTicket findTicketById(int ticketId) {
-		// TODO Auto-generated method stub
-		return null;
+		Query q = em.createQuery("select parkingticket from Parkingticket parkingticket where parkingticket.id = :parkingticketId");
+		q.setParameter("parkingticketId", ticketId);
+		return (ParkingTicket)q.getResultList();
 	}
 	
 }
