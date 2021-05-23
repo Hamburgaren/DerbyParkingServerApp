@@ -10,6 +10,6 @@ public interface ParkingDataAccess {
 	public List<ParkingTicket> getAllParkingTickets();
 	public List<ParkingTicket> getCarsbyId(int id);
 	public void createTicket(ParkingTicket ticket) throws ParkingTicketAlreadyExistsException, StorageAccessException;
-	public void deleteTicket(int ticketId) throws StorageAccessException;
+	public boolean deleteTicket(int ticketId) throws StorageAccessException;
 	public ParkingTicket findTicketById(int ticketId) throws StorageAccessException;
 }

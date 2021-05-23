@@ -11,6 +11,6 @@ import se.yrgo.domain.StorageAccessException;
 public interface ParkingService {
 
 	public void createTicket(ParkingTicket ticket) throws ParkingTicketAlreadyExistsException, StorageAccessException;
-	public void deleteTicket(int ticketId) throws StorageAccessException;
+	public boolean deleteTicket(int ticketId) throws StorageAccessException;
 	public ParkingTicket findTicketById(int ticketId) throws StorageAccessException;
 }

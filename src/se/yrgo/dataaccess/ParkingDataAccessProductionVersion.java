@@ -48,24 +48,26 @@ public class ParkingDataAccessProductionVersion implements ParkingDataAccess {
 	}
 
 	@Override
-	public void deleteTicket(int ticketId) throws StorageAccessException {
-		
-		em.remove(findTicketById(ticketId));
-		
-	}
-
-	@Override
-	public ParkingTicket findTicketById(int ticketId) throws StorageAccessException {
-		ParkingTicket resultTicket;
-		try {
-			Query q = em.createQuery("select parkingticket from Parkingticket parkingticket where parkingticket.id = :parkingticketId");
-			q.setParameter("parkingticketId", ticketId);
-			resultTicket = (ParkingTicket)q.getResultList();
-		} catch (Exception ex) {
-			throw new StorageAccessException("Error: Unable to make query to database to find ticketById.", ex);
+	public boolean deleteTicket(int ticketId) throws StorageAccessException {
+		ParkingTicket ticketToRemove = findTicketById(ticketId); 
+		if (ticketToRemove == null) {
+			return false;
 		}
 		
-		return resultTicket;
+		try {
+			em.remove(ticketToRemove);
+		} catch (Exception ex) {
+			throw new StorageAccessException("Unable to remove ticket from database.", ex);
+		}
+		return true;
+	}
+
+	/**
+	 * Returns ParkingTicket or null if no such parking ticket exists.
+	 */
+	@Override
+	public ParkingTicket findTicketById(int ticketId) {
+		return em.find(ParkingTicket.class, ticketId);
 	}
 	
 }

@@ -20,8 +20,8 @@ public class ParkingServiceImplementation implements ParkingService {
 	}
 
 	@Override
-	public void deleteTicket(int ticketId) throws StorageAccessException {
-		dao.deleteTicket(ticketId);
+	public boolean deleteTicket(int ticketId) throws StorageAccessException {
+		return dao.deleteTicket(ticketId);
 	}
 
 	@Override

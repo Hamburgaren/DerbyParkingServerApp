@@ -14,6 +14,7 @@ import se.yrgo.domain.Car;
 import se.yrgo.domain.Customer;
 import se.yrgo.domain.Employee;
 import se.yrgo.domain.ParkingTicket;
+import se.yrgo.domain.StorageAccessException;
 import se.yrgo.service.ParkingService;
 
 
@@ -30,26 +31,17 @@ public class ParkingResource {
 	/**
 	 *  You can access this REST interface from: http://localhost:8080/EmployeeManagement/webservice/parkingtickets/5
 	 */
-	public Response findTicketById(@PathParam("ticketId") int id) {
-		/*
+	public Response findTicketById(@PathParam("ticketId") int id) throws StorageAccessException {
 		ParkingTicket resultTicket;
 		
-		try {	
-			resultTicket = service.findTicketById(id);
-		} catch (Exception ex) {
-			return Response.serverError().entity(ex.getLocalizedMessage()).build();
+		resultTicket = service.findTicketById(id);
+		if (resultTicket == null) {
+			return Response.status(404).build();
 		}
-		
-		if (resultTicket != null) {
-			return Response.ok(resultTicket).build();
-		}
-		
-		return Response.status(404).build();
-		*/
-		
+		return Response.ok(resultTicket).build();
 		
 		/* This is just some meaningless test code to check that we are able to make requests. */
-		
+		/*
 		if (id == 5) {
 			Car car1 = new Car("ZER 992", "grey Lada");
 			Customer customer1 = new Customer("George", "Costanza");
@@ -63,6 +55,7 @@ public class ParkingResource {
 		}
 
 		return Response.status(404).build();
+		*/
 	}
 
 	@DELETE
@@ -72,13 +65,25 @@ public class ParkingResource {
 	 *  You can access this REST interface from: http://localhost:8080/EmployeeManagement/webservice/parkingtickets/5
 	 */
 	public Response deleteTicketById(@PathParam("ticketId") int id) {
-		//service.deleteTicket(id);
+		
+		try {
+			if (service.deleteTicket(id) == false) {
+				return Response.status(404).build();
+			}
+		} catch (Exception ex) {
+			return Response.serverError().entity(ex.getLocalizedMessage()).build();
+		}
+		
+		return Response.ok(null).build();
+		
 		/* This is just some meaningless test code to check that we are able to make requests. */
+		/*
 		if (id == 5) {
 			return Response.ok(null).build();
 		}
+		*/
 
-		return Response.status(404).build();
+		
 	}
 	
 	/**
@@ -95,7 +100,6 @@ public class ParkingResource {
 		try {
 			service.createTicket(ticket);
 		} catch (Exception ex) {
-			//ex.printStackTrace();
 			return Response.serverError().entity(ex.getLocalizedMessage()).build();
 		}
 		return Response.ok(ticket).build();
