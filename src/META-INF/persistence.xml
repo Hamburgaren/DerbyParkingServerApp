@@ -6,10 +6,10 @@
 
 	<!-- This file is for the chapter on JPA, please leave it until then -->
 
-	<!-- <persistence-unit name="databaseConfig" transaction-type="RESOURCE_LOCAL"> -->
 	<persistence-unit name="employeeDb" transaction-type="JTA">
+	<!-- <persistence-unit name="parkingDb" transaction-type="JTA"> -->
 		<jta-data-source>java:/EmployeeDatabase</jta-data-source>
-		
+		<!-- <jta-data-source>java:/DerbyParkingDatabase</jta-data-source> -->
 		
 		<properties>
 			<!-- 
