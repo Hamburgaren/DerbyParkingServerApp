@@ -43,7 +43,7 @@ public class ParkingTicket implements Serializable {
 	 * @param car               Car that this parking ticket has been issued for.
 	 * @param customer
 	 */
-	public ParkingTicket(Date validThroughBegin, Date validThroughEnd, int hours, int pricePerhour,
+	public ParkingTicket(Date validThroughBegin, Date validThroughEnd, int pricePerhour,
 			String streetAddress, Car car, Customer customer) {
 		super();
 		/*

@@ -61,8 +61,7 @@ public class Client {
 	
 	    Car car1 = new Car("YRG 023", "Ljusblå Dacia");
 	    Customer customer1 = new Customer("Ola", "Conny");
-	    
-		ParkingTicket ticket = new ParkingTicket(now, later, 2, 5, "Roliga gatan 2", car1, customer1);
+		ParkingTicket ticket = new ParkingTicket(now, later, 5, "Roliga gatan 2", car1, customer1);
 		
 		try {
 			service.createTicket(ticket);
