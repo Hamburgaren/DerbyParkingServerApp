@@ -18,7 +18,7 @@ How to create database from Derby's IJ interactive scripting tool:
 connect 'jdbc:derby://localhost:50000/parkingDB; create=true';
 ```
 
-Also the following section of XML code needs to be added into the file C:\[installation directory of Wilfly]\standalone\configuration\standalone.xml and inside the <datasources> tag:
+Also the following section of XML code needs to be added into the file C:\[installation directory of Wildfly]\standalone\configuration\standalone.xml and inside the <datasources> tag:
 
 ```
 <datasource jndi-name="java:/DerbyParkingDatabase" pool-name="ParkingDatabase" enabled="true" use-java-context="true">
