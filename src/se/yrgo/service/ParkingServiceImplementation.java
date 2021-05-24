@@ -29,5 +29,4 @@ public class ParkingServiceImplementation implements ParkingService {
 		return dao.findTicketById(ticketId);
 	}
 
-
 }
