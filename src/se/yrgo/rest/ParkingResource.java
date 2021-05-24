@@ -12,7 +12,6 @@ import javax.ws.rs.core.Response;
 
 import se.yrgo.domain.Car;
 import se.yrgo.domain.Customer;
-import se.yrgo.domain.Employee;
 import se.yrgo.domain.ParkingTicket;
 import se.yrgo.domain.StorageAccessException;
 import se.yrgo.service.ParkingService;
