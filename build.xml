@@ -13,11 +13,11 @@
     <property name="server-dist" value="/opt/wildfly/wildfly/wildfly-10.0.0.Final/standalone/deployments"/>
     -->
 
-	<property name="server-dist" value="C:\codingsoftware\wildfly-23.0.1.Final\standalone\deployments\"/>
+	<property name="server-dist" value="C:\wildfly-23.0.2.Final\standalone\deployments\"/>
 
 
-	<property name="server-jarfile" value="${server-dist}/EmployeeManagementServerApplication.jar"/>
-		<property name="warfile" value="${server-dist}/EmployeeManagement.war"/>
+	<property name="server-jarfile" value="${server-dist}/ParkingTicketManagementApplication.jar"/>
+		<property name="warfile" value="${server-dist}/ParkingTicketManagement.war"/>
 
 	    <path id="my.classpath">
 	        <pathelement path="${java.class.path}"/>

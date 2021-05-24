@@ -9,7 +9,7 @@ import se.yrgo.domain.ParkingTicketAlreadyExistsException;
 import se.yrgo.domain.StorageAccessException;
 
 @Stateless
-public class ParkingServiceImplementation implements ParkingService {
+public class ParkingServiceImplementation implements ParkingService, ParkingServiceLocal{
 	
 	@Inject
 	private ParkingDataAccess dao;
