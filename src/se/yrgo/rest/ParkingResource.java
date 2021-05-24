@@ -60,6 +60,15 @@ public class ParkingResource {
 		*/
 	}
 
+	//TODO: PUT operation that assigns new values to existing to ParkingTicket.
+	@PUT
+	@Consumes("application/JSON")
+	@Produces("application/JSON")
+	public Response updateTicket(ParkingTicket newTicket) {
+		return Response.ok(newTicket).build();
+	}
+
+
 	@DELETE
 	@Produces("application/JSON") // @Produces("application/XML")
 	@Path("{ticketId}")
