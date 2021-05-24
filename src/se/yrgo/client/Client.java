@@ -56,6 +56,7 @@ public class Client {
 	
 		
 		try {
+			System.out.println("Creating tickets...");
 			service.createTicket(ticket);
 			service.createTicket(ticket2);
 			service.createTicket(ticket3);
@@ -66,6 +67,8 @@ public class Client {
 		catch (StorageAccessException ex) {
 			System.err.println("Data access went wrong. " + ex.getMessage());
 		}
+		
+		
 
 	}
 
