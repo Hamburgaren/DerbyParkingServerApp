@@ -16,6 +16,7 @@ import se.yrgo.domain.ParkingTicket;
 import se.yrgo.domain.ParkingTicketAlreadyExistsException;
 import se.yrgo.domain.StorageAccessException;
 import se.yrgo.service.ParkingService;
+import se.yrgo.service.ParkingServiceLocal;
 
 public class Client {
 
