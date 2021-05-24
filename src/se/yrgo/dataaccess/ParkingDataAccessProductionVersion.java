@@ -11,23 +11,24 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import se.yrgo.domain.ParkingTicketAlreadyExistsException;
+import se.yrgo.domain.ParkingTicketDoesNotExistException;
 import se.yrgo.domain.StorageAccessException;
 import se.yrgo.domain.ParkingTicket;
 
 @Stateless
 @Default
 public class ParkingDataAccessProductionVersion implements ParkingDataAccess {
-	
+
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
 	public List<ParkingTicket> getAllParkingTickets() {
 		Query q = em.createQuery("select ticket from Ticket ticket");
 		List<ParkingTicket> tickets = q.getResultList();
 		return tickets;
 	}
-	
+
 	@Override
 	public List<ParkingTicket> getCarsbyId(int id) {
 		Query q = em.createQuery("select car from Car car where car.id = :carId");
@@ -49,11 +50,11 @@ public class ParkingDataAccessProductionVersion implements ParkingDataAccess {
 
 	@Override
 	public boolean deleteTicket(int ticketId) throws StorageAccessException {
-		ParkingTicket ticketToRemove = findTicketById(ticketId); 
+		ParkingTicket ticketToRemove = findTicketById(ticketId);
 		if (ticketToRemove == null) {
 			return false;
 		}
-		
+
 		try {
 			em.remove(ticketToRemove);
 		} catch (Exception ex) {
@@ -73,5 +74,18 @@ public class ParkingDataAccessProductionVersion implements ParkingDataAccess {
 			throw new StorageAccessException("Unable to find ticket from database.", ex);
 		}
 	}
-	
+
+	@Override
+	public void updateTicket(ParkingTicket newTicket)
+			throws StorageAccessException, ParkingTicketDoesNotExistException {
+		try {
+			em.merge(newTicket);
+		} catch (IllegalArgumentException ex) {
+			throw new ParkingTicketDoesNotExistException("Unable to update parking ticket.", ex);
+		} catch (Exception ex) {
+			throw new StorageAccessException("Unable to update parking ticket.", ex);
+		}
+
+	}
+
 }

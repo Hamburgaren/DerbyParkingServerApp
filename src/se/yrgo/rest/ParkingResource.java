@@ -13,6 +13,7 @@ import javax.ws.rs.core.Response;
 import se.yrgo.domain.Car;
 import se.yrgo.domain.Customer;
 import se.yrgo.domain.ParkingTicket;
+import se.yrgo.domain.ParkingTicketDoesNotExistException;
 import se.yrgo.domain.StorageAccessException;
 import se.yrgo.service.ParkingService;
 
@@ -60,11 +61,33 @@ public class ParkingResource {
 		*/
 	}
 
-	//TODO: PUT operation that assigns new values to existing to ParkingTicket.
 	@PUT
 	@Consumes("application/JSON")
 	@Produces("application/JSON")
 	public Response updateTicket(ParkingTicket newTicket) {
+		
+		ParkingTicket oldTicket;
+		
+		try {
+			oldTicket = service.findTicketById(newTicket.getId());
+		} catch (Exception ex) {
+			return Response.serverError().entity(ex.getLocalizedMessage()).build();
+		}
+		
+		if (oldTicket == null) {
+			// No such ticket exists.
+			return Response.status(404).build();
+		} 
+		
+		// Ticket seems to exist
+		try {
+			service.updateTicket(newTicket);
+		} catch (ParkingTicketDoesNotExistException ex) {
+			return Response.status(404).build();
+		} catch (Exception ex) {
+			return Response.serverError().entity(ex.getLocalizedMessage()).build();
+		}
+		
 		return Response.ok(newTicket).build();
 	}
 

@@ -23,10 +23,10 @@ public class ParkingTicket implements Serializable {
 	private int pricePerhour;
 	private String streetAddress;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Car car;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Customer customer;
 
 	/**
