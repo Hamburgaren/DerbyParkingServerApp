@@ -31,6 +31,8 @@ Also the following section of XML code needs to be added into the file C:\[insta
 </datasource>
 ```
 
+You should now be able to login to the Wildfly administration page from your web-browser and open the Configuration --> Subsystems --> Datasource&Driver --> Datasources --> 'ParkingDatabase'. And if you click on 'ParkingDatabase' you should be able to choose "Test connection" and that should display the text "Successfully tested connection for datasource ParkingDatabase.".
+
 ## Runtime requirements:
 
 Currently requires an Apache Derby database server to be running on port 50000. 
