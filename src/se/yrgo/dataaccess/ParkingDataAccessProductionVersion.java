@@ -66,8 +66,12 @@ public class ParkingDataAccessProductionVersion implements ParkingDataAccess {
 	 * Returns ParkingTicket or null if no such parking ticket exists.
 	 */
 	@Override
-	public ParkingTicket findTicketById(int ticketId) {
-		return em.find(ParkingTicket.class, ticketId);
+	public ParkingTicket findTicketById(int ticketId) throws StorageAccessException {
+		try {
+			return em.find(ParkingTicket.class, ticketId);
+		} catch (Exception ex) {
+			throw new StorageAccessException("Unable to find ticket from database.", ex);
+		}
 	}
 	
 }

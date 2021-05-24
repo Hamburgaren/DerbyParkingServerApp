@@ -30,10 +30,13 @@ public class ParkingResource {
 	/**
 	 *  You can access this REST interface from: http://localhost:8080/EmployeeManagement/webservice/parkingtickets/5
 	 */
-	public Response findTicketById(@PathParam("ticketId") int id) throws StorageAccessException {
+	public Response findTicketById(@PathParam("ticketId") int id) {
 		ParkingTicket resultTicket;
-		
-		resultTicket = service.findTicketById(id);
+		try {
+			resultTicket = service.findTicketById(id);
+		} catch (Exception ex) {
+			return Response.serverError().entity(ex.getLocalizedMessage()).build();
+		}
 		if (resultTicket == null) {
 			return Response.status(404).build();
 		}
