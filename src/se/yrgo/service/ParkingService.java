@@ -7,7 +7,7 @@ import se.yrgo.domain.ParkingTicket;
 import se.yrgo.domain.ParkingTicketAlreadyExistsException;
 import se.yrgo.domain.StorageAccessException;
 
-@Local
+@Remote
 public interface ParkingService {
 
 	public void createTicket(ParkingTicket ticket) throws ParkingTicketAlreadyExistsException, StorageAccessException;
