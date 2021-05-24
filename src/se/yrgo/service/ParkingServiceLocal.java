@@ -1,22 +1,16 @@
-package se.yrgo.dataaccess;
+package se.yrgo.service;
 
-import java.util.List;
-
-import javax.ejb.Local;
-<<<<<<< Updated upstream
-=======
 import javax.ejb.Remote;
->>>>>>> Stashed changes
 
 import se.yrgo.domain.ParkingTicket;
 import se.yrgo.domain.ParkingTicketAlreadyExistsException;
 import se.yrgo.domain.StorageAccessException;
 
-@Local
-public interface ParkingDataAccess {
-	public List<ParkingTicket> getAllParkingTickets();
-	public List<ParkingTicket> getCarsbyId(int id);
+@Remote
+public interface ParkingServiceLocal {
+
 	public void createTicket(ParkingTicket ticket) throws ParkingTicketAlreadyExistsException, StorageAccessException;
 	public boolean deleteTicket(int ticketId) throws StorageAccessException;
 	public ParkingTicket findTicketById(int ticketId) throws StorageAccessException;
+	
 }

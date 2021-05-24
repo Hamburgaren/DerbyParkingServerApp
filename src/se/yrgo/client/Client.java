@@ -28,7 +28,7 @@ public class Client {
 
 		Context jndi = new InitialContext(jndiProperties);
 
-		ParkingService service = (ParkingService) jndi.lookup("ParkingTicketManagementApplication/ParkingServiceImplementation!se.yrgo.service.ParkingService");
+		ParkingService service = (ParkingService) jndi.lookup("ParkingTicketManagementApplication/ParkingServiceImplementation!se.yrgo.service.ParkingServiceLocal");
 //
 //		Employee emp1 = new Employee("Andreas", "Green", "Designer", 2700);
 //		Employee emp2 = new Employee("Rikard", "Blue", "Tester", 1800);
