@@ -29,42 +29,36 @@ public class Client {
 
 		Context jndi = new InitialContext(jndiProperties);
 
-		ParkingService service = (ParkingService) jndi.lookup("ParkingTicketManagementApplication/ParkingServiceImplementation!se.yrgo.service.ParkingServiceLocal");
-//
-//		Employee emp1 = new Employee("Andreas", "Green", "Designer", 2700);
-//		Employee emp2 = new Employee("Rikard", "Blue", "Tester", 1800);
-//		Employee emp3 = new Employee("Ronald", "Black", "Programmer", 2900);
-//		Employee emp4 = new Employee("Eric", "Black", "Manager", 2000);
-//
-//		service.registerEmployee(emp1);
-//		service.registerEmployee(emp2);
-//		service.registerEmployee(emp3);
-//		service.registerEmployee(emp4);
-//
-//		// EmployeeManagementServerApplication/EmployeeManagementImplementation!se.yrgo.service.EmployeeManagementService
-//		List<Employee> employees = service.getAllEmployees();
-//		for (Employee employee : employees) {
-//			System.out.println(employee);
-//		}
-//
-//		System.out.println("******");
-//		
-//		employees = service.searchBysurname("Black");
-//		for (Employee employee : employees) {
-//			System.out.println("---" + employee);
-//		}
+		ParkingServiceLocal service = (ParkingServiceLocal) jndi.lookup("ParkingTicketManagementApplication/ParkingServiceImplementation!se.yrgo.service.ParkingServiceLocal");
+
+		// RUN TO ADD TICKETS TO DATABASE
 		
-		Date now = new Date();
-	    Date later = new Date();
-	    later.setHours(now.getHours() + 1);
-	    
+		Date start = new Date("Sat, 12 Aug 1995 13:30:00 GMT");
+	    Date end = new Date("Sun, 13 Aug 1995 13:30:00 GMT");
 	
 	    Car car1 = new Car("YRG 023", "Ljusblå Dacia");
 	    Customer customer1 = new Customer("Ola", "Conny");
-		ParkingTicket ticket = new ParkingTicket(now, later, 5, "Roliga gatan 2", car1, customer1);
+		ParkingTicket ticket = new ParkingTicket(start, end, 5, "Roliga gatan 2", car1, customer1);
+		
+		Date start1 = new Date("Sat, 19 Aug 1996 11:30:00 GMT");
+	    Date end1 = new Date("Sun, 26 Aug 1996 13:30:00 GMT");
+	    Car car2 = new Car("ORC 554", "Volvo 240 GL");
+	    Customer customer2 = new Customer("Johan", "Larsson");
+	    
+		ParkingTicket ticket2 = new ParkingTicket(start1, end1, 5, "Grusvägen 3", car2, customer2);
+		
+	    Car car3 = new Car("HEJ 299", "SAAB 95");
+	    Customer customer3 = new Customer("Bosse", "Bredsladd");
+	    
+		ParkingTicket ticket3 = new ParkingTicket(start1, end1, 1, "Lolvägen 1", car3, customer3);
+		
+		System.out.println(start.toString());
+	
 		
 		try {
 			service.createTicket(ticket);
+			service.createTicket(ticket2);
+			service.createTicket(ticket3);
 		}
 		catch (ParkingTicketAlreadyExistsException ex) {
 			System.err.println("The ticket already exists! " + ex.getMessage());

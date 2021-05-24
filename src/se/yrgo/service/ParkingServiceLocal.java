@@ -1,5 +1,6 @@
 package se.yrgo.service;
 
+import javax.ejb.Local;
 import javax.ejb.Remote;
 
 import se.yrgo.domain.ParkingTicket;
