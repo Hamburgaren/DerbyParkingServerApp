@@ -3,10 +3,8 @@ package se.yrgo.dataaccess;
 import java.util.List;
 
 import javax.ejb.Local;
-<<<<<<< Updated upstream
-=======
 import javax.ejb.Remote;
->>>>>>> Stashed changes
+
 
 import se.yrgo.domain.ParkingTicket;
 import se.yrgo.domain.ParkingTicketAlreadyExistsException;
