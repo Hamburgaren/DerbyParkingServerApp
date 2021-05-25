@@ -25,28 +25,34 @@ public class TestClient {
 		// GET TICKET BY ID
 		Client client = ClientBuilder.newClient();
 		Response response = client.target("http://localhost:8080/ParkingTicketManagement/webservice/parkingtickets/1").request("application/JSON").buildGet().invoke();
-		ParkingTicket ticketGET = response.readEntity(ParkingTicket.class);
-		
-		Response responseGET = client.target("http://localhost:8080/ParkingTicketManagement/webservice/parkingtickets/1").request("application/JSON").buildDelete().invoke();
-		System.out.println(responseGET.getHeaders() + " GET WAS GOOD"); 
-
+		System.out.println(response.getHeaders() + " GET WAS GOOD"); 
+		response.close();
 		
 //		
-//		// CREATE TICKET AND POST IT 
-//		DATE START = NEW DATE("SAT, 12 AUG 1995 13:30:00 GMT");
-//	    DATE END = NEW DATE("SUN, 13 AUG 1995 13:30:00 GMT");
-//	    CAR CAR1 = NEW CAR("YRG 023", "LJUSBLÅ DACIA");
-//	    CUSTOMER CUSTOMER1 = NEW CUSTOMER("OLA", "CONNY");
-//		PARKINGTICKET TICKETPOST = NEW PARKINGTICKET(START, END, 5, "ROLIGA GATAN 2", CAR1, CUSTOMER1);
-//
-//		ENTITY TICKETENTITY = ENTITY.ENTITY(TICKETPOST, "APPLICATION/JSON");
-//		RESPONSE RESPONSEPOST = CLIENT.TARGET("HTTP://LOCALHOST:8080/PARKINGTICKETMANAGEMENT/WEBSERVICE/PARKINGTICKETS/").REQUEST().BUILDPOST(TICKETENTITY).INVOKE();
-//		SYSTEM.OUT.PRINTLN(RESPONSE.GETSTATUS() + RESPONSE.READENTITY(PARKINGTICKET.CLASS).GETID());
-//		
-		responseGET.close();
-//		responsePOST.close();
-	    
+		// CREATE TICKET AND POST IT 
+		Date start = new Date("SAT, 12 AUG 1995 13:30:00 GMT");
+	    Date end = new Date("SUN, 13 AUG 1995 13:30:00 GMT");
+	    Car car1 = new Car("YRG 023", "LJUSBLÅ DACIA");
+	    Customer customer1 = new Customer("OLA", "CONNY");
+		ParkingTicket ticketPost = new ParkingTicket(start, end, 5, "ROLIGA GATAN 2", car1, customer1);
+		
+		Entity TicketEntity = Entity.entity(ticketPost, "APPLICATION/JSON");
+		response = client.target("http://localhost:8080/ParkingTicketManagement/webservice/parkingtickets").request().buildPost(TicketEntity).invoke();
+		System.out.println(response.getStatus() + response.readEntity(ParkingTicket.class).getId());
+		response.close();
+		
+		//  UPDATE/PUT new information to a ParkingTicket
+		ticketPost.setPricePerhour(5000);
+		Entity ticketEntityPut = Entity.entity(ticketPost, "APPLICATION/JSON");
+		response = client.target("http://localhost:8080/ParkingTicketManagement/webservice/parkingtickets/1").request("application/JSON").buildPut(ticketEntityPut).invoke();
 
+		System.out.println(response.getStatus() + " ticket " + ticketPost.getId() + " was updated.");
+		response.close();
+		
+	//  DELETE TICKET WITH ID 10
+		response = client.target("http://localhost:8080/ParkingTicketManagement/webservice/parkingtickets/10").request("application/JSON").buildDelete().invoke();
+		System.out.println(response.getStatus() + " OLA CONNY with id 10 was deleted");
+		response.close();
 	}
 
 }
