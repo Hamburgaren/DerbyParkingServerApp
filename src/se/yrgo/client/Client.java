@@ -37,7 +37,7 @@ public class Client {
 	    Date end = new Date("Sun, 13 Aug 1995 13:30:00 GMT");
 	
 	    Car car1 = new Car("YRG 023", "Ljusblå Dacia");
-	    Customer customer1 = new Customer("Ola", "Conny");
+	    Customer customer1 = new Customer("Kalle", "Eriksson");
 		ParkingTicket ticket = new ParkingTicket(start, end, 5, "Roliga gatan 2", car1, customer1);
 		
 		Date start1 = new Date("Sat, 19 Aug 1996 11:30:00 GMT");

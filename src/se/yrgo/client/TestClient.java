@@ -38,18 +38,18 @@ public class TestClient {
 		
 		Entity TicketEntity = Entity.entity(ticketPost, "APPLICATION/JSON");
 		response = client.target("http://localhost:8080/ParkingTicketManagement/webservice/parkingtickets").request().buildPost(TicketEntity).invoke();
-		System.out.println(response.getStatus() + response.readEntity(ParkingTicket.class).getId());
+		System.out.println(response.getStatus() + " a parking ticket was posted.");
 		response.close();
 		
 		//  UPDATE/PUT new information to a ParkingTicket
 		ticketPost.setPricePerhour(5000);
 		Entity ticketEntityPut = Entity.entity(ticketPost, "APPLICATION/JSON");
 		response = client.target("http://localhost:8080/ParkingTicketManagement/webservice/parkingtickets/1").request("application/JSON").buildPut(ticketEntityPut).invoke();
-
-		response = client.target("http://localhost:8080/ParkingTicketManagement/webservice/parkingtickets/1").request().buildGet().invoke();
-		ParkingTicket ticketGET = response.readEntity(ParkingTicket.class);
+//
+//		response = client.target("http://localhost:8080/ParkingTicketManagement/webservice/parkingtickets/1").request().buildGet().invoke();
+//		ParkingTicket ticketGET = response.readEntity(ParkingTicket.class);
 		
-		System.out.println(ticketGET); 
+//		System.out.println(ticketGET); 
 		response.close();
 		
 
