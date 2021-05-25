@@ -13,8 +13,8 @@ import javax.ws.rs.core.Response;
 import se.yrgo.domain.Car;
 import se.yrgo.domain.Customer;
 import se.yrgo.domain.ParkingTicket;
-import se.yrgo.domain.ParkingTicketDoesNotExistException;
-import se.yrgo.domain.StorageAccessException;
+import se.yrgo.exceptions.ParkingTicketDoesNotExistException;
+import se.yrgo.exceptions.StorageAccessException;
 import se.yrgo.service.ParkingService;
 
 

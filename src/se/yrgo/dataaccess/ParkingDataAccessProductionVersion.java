@@ -10,10 +10,11 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
-import se.yrgo.domain.ParkingTicketAlreadyExistsException;
-import se.yrgo.domain.ParkingTicketDoesNotExistException;
-import se.yrgo.domain.StorageAccessException;
+
 import se.yrgo.domain.ParkingTicket;
+import se.yrgo.exceptions.ParkingTicketAlreadyExistsException;
+import se.yrgo.exceptions.ParkingTicketDoesNotExistException;
+import se.yrgo.exceptions.StorageAccessException;
 
 @Stateless
 @Default

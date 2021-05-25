@@ -1,4 +1,4 @@
-package se.yrgo.domain;
+package se.yrgo.exceptions;
 
 public class ParkingTicketDoesNotExistException extends Exception {
 

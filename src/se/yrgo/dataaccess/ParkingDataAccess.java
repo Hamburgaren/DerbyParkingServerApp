@@ -7,9 +7,9 @@ import javax.ejb.Remote;
 
 
 import se.yrgo.domain.ParkingTicket;
-import se.yrgo.domain.ParkingTicketAlreadyExistsException;
-import se.yrgo.domain.ParkingTicketDoesNotExistException;
-import se.yrgo.domain.StorageAccessException;
+import se.yrgo.exceptions.ParkingTicketAlreadyExistsException;
+import se.yrgo.exceptions.ParkingTicketDoesNotExistException;
+import se.yrgo.exceptions.StorageAccessException;
 
 @Local
 public interface ParkingDataAccess {

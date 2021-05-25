@@ -13,8 +13,8 @@ import javax.naming.NamingException;
 import se.yrgo.domain.Car;
 import se.yrgo.domain.Customer;
 import se.yrgo.domain.ParkingTicket;
-import se.yrgo.domain.ParkingTicketAlreadyExistsException;
-import se.yrgo.domain.StorageAccessException;
+import se.yrgo.exceptions.ParkingTicketAlreadyExistsException;
+import se.yrgo.exceptions.StorageAccessException;
 import se.yrgo.service.ParkingService;
 import se.yrgo.service.ParkingServiceLocal;
 
