@@ -1,7 +1,7 @@
 <project name="JavaEE Wildfly Server Build" default="BuildAll">
 
     <property name="bin" value="./bin"/>
-    <property name="lib" value="./lib"/>
+    <property name="lib" value="libServer"/>
     <property name="src" value="./src"/>
 
 	<!-- select a line that points to the path of your server deployment folder
@@ -23,7 +23,7 @@
 	        <pathelement path="${java.class.path}"/>
 	        <pathelement location="${bin}"/>
 
-	        <fileset dir="${lib}">
+	        <fileset dir="libServer">
 	            <include name="*.jar"/>
 	        </fileset>
 
@@ -87,7 +87,7 @@
 				<classes dir="${bin}">
 				</classes>
 
-			    <lib dir="${lib}"/>
+			    <lib dir="libServer"/>
 
 			</war>
 
