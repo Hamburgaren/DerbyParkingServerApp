@@ -24,12 +24,11 @@ public class TestClient {
 		
 		// GET TICKET BY ID
 		Client client = ClientBuilder.newClient();
-		Response response = client.target("http://localhost:8080/ParkingTicketManagement/webservice/parkingtickets/1").request("application/JSON").buildGet().invoke();
+		Response response = client.target("http://localhost:8080/ParkingTicketManagement/webservice/parkingtickets/1").request().buildGet().invoke();
 		ParkingTicket ticketGET = response.readEntity(ParkingTicket.class);
 		
-		Response responseGET = client.target("http://localhost:8080/ParkingTicketManagement/webservice/parkingtickets/1").request("application/JSON").buildDelete().invoke();
-		System.out.println(responseGET.getHeaders() + " GET WAS GOOD"); 
-
+		System.out.println(ticketGET); 
+		response.close();
 		
 //		
 //		// CREATE TICKET AND POST IT 
@@ -43,7 +42,6 @@ public class TestClient {
 //		RESPONSE RESPONSEPOST = CLIENT.TARGET("HTTP://LOCALHOST:8080/PARKINGTICKETMANAGEMENT/WEBSERVICE/PARKINGTICKETS/").REQUEST().BUILDPOST(TICKETENTITY).INVOKE();
 //		SYSTEM.OUT.PRINTLN(RESPONSE.GETSTATUS() + RESPONSE.READENTITY(PARKINGTICKET.CLASS).GETID());
 //		
-		responseGET.close();
 //		responsePOST.close();
 	    
 
