@@ -20,6 +20,13 @@ import se.yrgo.service.ParkingService;
 
 @Stateless
 @Path("/parkingtickets/")
+/**
+ * 
+ * REST interface for manipulating ParkingTicket Entity.
+ * 
+ * @author Tommi Ahonen
+ *
+ */
 public class ParkingResource {
 	
 	@Inject
@@ -29,7 +36,12 @@ public class ParkingResource {
 	@Produces("application/JSON") //@Produces("application/JSON") //
 	@Path("{ticketId}")
 	/**
-	 *  You can access this REST interface from: http://localhost:8080/EmployeeManagement/webservice/parkingtickets/5
+	 * 
+	 * Retrieve an existing parkingTicket.  
+	 * 
+	 * @param id Id of parkingTicket to retrieve.
+	 * @return ParkingTicket in JSON format. Returns HTTP status code 200 if ticket is found. Or HTTP status code 404 if ticket is not. Or HTTP status code 500 if an error occurs and operation can't be completed.
+	 * 
 	 */
 	public Response findTicketById(@PathParam("ticketId") int id) {
 		ParkingTicket resultTicket;
@@ -42,28 +54,18 @@ public class ParkingResource {
 			return Response.status(404).build();
 		}
 		return Response.ok(resultTicket).build();
-		
-		/* This is just some meaningless test code to check that we are able to make requests. */
-		/*
-		if (id == 5) {
-			Car car1 = new Car("ZER 992", "grey Lada");
-			Customer customer1 = new Customer("George", "Costanza");
-
-			Date timeNow = new Date();
-			int millisecondsInMinute = 1000*60;
-			int parkingLengthInMinutes = 120;
-			ParkingTicket ticket = new ParkingTicket(timeNow, new Date(timeNow.getTime() + parkingLengthInMinutes * millisecondsInMinute), 2,15, "Långgatan 5", car1, customer1);
-			//ParkingTicket ticket = new ParkingTicket(timeNow, timeNow, 2,	15, "Långgatan 5", car1, customer1);
-			return Response.ok(ticket).build();
-		}
-
-		return Response.status(404).build();
-		*/
 	}
 
 	@PUT
 	@Consumes("application/JSON")
 	@Produces("application/JSON")
+	/**
+	 * 
+	 * Update an existing parkingTicket.
+	 * 
+	 * @param newTicket The new ParkingTicket that want to be stored.
+	 * @return The new ParkingTicket in JSON format. Returns HTTP status code 200 if update has been made succesfully. Or HTTP status code 404 no such ticket could be found. Or HTTP status code 500 if an error occurs and operation can't be completed.
+	 */
 	public Response updateTicket(ParkingTicket newTicket) {
 		
 		ParkingTicket oldTicket;
@@ -96,7 +98,10 @@ public class ParkingResource {
 	@Produces("application/JSON") // @Produces("application/XML")
 	@Path("{ticketId}")
 	/**
-	 *  You can access this REST interface from: http://localhost:8080/EmployeeManagement/webservice/parkingtickets/5
+	 * Delete an existing ParkingTicket.
+	 * 
+	 * @param id Id of ParkingTicket to delete.
+	 * @return Returns HTTP status code 200 if delete was made succesfully. Or HTTP status code 404 no such ticket could be found. Or HTTP status code 500 if an error occurs and operation can't be completed.
 	 */
 	public Response deleteTicketById(@PathParam("ticketId") int id) {
 		
@@ -109,21 +114,14 @@ public class ParkingResource {
 		}
 		
 		return Response.ok(null).build();
-		
-		/* This is just some meaningless test code to check that we are able to make requests. */
-		/*
-		if (id == 5) {
-			return Response.ok(null).build();
-		}
-		*/
 
-		
 	}
 	
 	/**
-	 *  You can access this REST interface from: http://localhost:8080/EmployeeManagement/webservice/parkingtickets/
-	 *  
-	 *  N.B. There must be a JSON formatted ParkingTicket string posted also. 
+	 * Create a new ParkingTicket.
+	 * 
+	 * @param ticket ParkingTicket to create.
+	 * @return The newly create ParkingTicket and HTTP status code 200. Or HTTP status code 500 if ticket could not be created.
 	 */
 	@POST
 	@Produces("application/JSON")
