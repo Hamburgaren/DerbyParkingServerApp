@@ -18,7 +18,10 @@ ant
 
 ## How to create database
 
-How to create database from Derby's IJ interactive scripting tool: `connect 'jdbc:derby://localhost:50000/parkingDB; create=true';`
+How to create database from Derby's IJ interactive scripting tool:
+```
+connect 'jdbc:derby://localhost:50000/parkingDB; create=true';
+```
 
 
 Also the following section of XML code needs to be added into the file C:\[installation directory of Wildfly]\standalone\configuration\standalone.xml and inside the <datasources> tag:
