@@ -1,5 +1,6 @@
 # Assignment in Serverprogrammering class Java20 at Yrgo/Göteborg.
 
+A REST interface with CRUD-like operations for managing parking tickets. 
 
 ## Participants: 
 Tommi Ahonen, Mehrdad Badeie, Thomas Haraldsson
